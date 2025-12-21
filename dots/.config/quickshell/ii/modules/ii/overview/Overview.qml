@@ -28,7 +28,7 @@ Scope {
 
             WlrLayershell.namespace: "quickshell:overview"
             WlrLayershell.layer: WlrLayer.Overlay
-            // WlrLayershell.keyboardFocus: GlobalStates.overviewOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+            WlrLayershell.keyboardFocus: GlobalStates.overviewOpen ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
             color: "transparent"
 
             mask: Region {
@@ -56,6 +56,7 @@ Scope {
             Connections {
                 target: GlobalStates
                 function onOverviewOpenChanged() {
+                    setSearchingText("")
                     if (!GlobalStates.overviewOpen) {
                         searchWidget.disableExpandAnimation();
                         overviewScope.dontAutoCancelSearch = false;
