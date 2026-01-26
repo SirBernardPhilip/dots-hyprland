@@ -41,11 +41,11 @@ Scope {
         Connections {
             target: GlobalStates
             function onOverviewOpenChanged() {
-                searchWidget.setSearchingText("");
                 if (!GlobalStates.overviewOpen) {
                     searchWidget.disableExpandAnimation();
                     overviewScope.dontAutoCancelSearch = false;
                     GlobalFocusGrab.dismiss();
+                    searchWidget.setSearchingText("");
                 } else {
                     if (!overviewScope.dontAutoCancelSearch) {
                         searchWidget.cancelSearch();
